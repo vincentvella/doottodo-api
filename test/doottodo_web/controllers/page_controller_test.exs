@@ -1,5 +1,5 @@
-defmodule DoottodoWeb.PageControllerTest do
-  use DoottodoWeb.ConnCase
+defmodule DootTodoWeb.PageControllerTest do
+  use DootTodoWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")

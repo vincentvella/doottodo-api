@@ -1,12 +1,12 @@
-defmodule Doottodo.Lists do
+defmodule DootTodo.Lists do
   @moduledoc """
   The Lists context.
   """
 
   import Ecto.Query, warn: false
-  alias Doottodo.Repo
+  alias DootTodo.Repo
 
-  alias Doottodo.Lists.List
+  alias DootTodo.Lists.List
 
   @doc """
   Returns the list of lists.

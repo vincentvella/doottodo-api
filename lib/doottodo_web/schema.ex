@@ -1,9 +1,9 @@
-defmodule DoottodoWeb.Schema do
+defmodule DootTodoWeb.Schema do
   use Absinthe.Schema
 
-  import_types(DoottodoWeb.Schema.ListTypes)
+  import_types(DootTodoWeb.Schema.ListTypes)
 
-  alias DoottodoWeb.Resolvers
+  alias DootTodoWeb.Resolvers
 
   mutation do
     field :create_list, non_null(:boolean) do

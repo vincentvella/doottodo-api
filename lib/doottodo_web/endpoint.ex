@@ -1,4 +1,4 @@
-defmodule DoottodoWeb.Endpoint do
+defmodule DootTodoWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :doottodo
 
   # The session will be stored in the cookie and signed,
@@ -46,5 +46,5 @@ defmodule DoottodoWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug DoottodoWeb.Router
+  plug DootTodoWeb.Router
 end

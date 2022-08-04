@@ -1,4 +1,4 @@
-defmodule Doottodo.Schema do
+defmodule DootTodo.Schema do
   defmacro __using__(_) do
     quote do
       use Ecto.Schema

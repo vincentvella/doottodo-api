@@ -1,5 +1,5 @@
-defmodule DoottodoWeb.Resolvers.Lists do
-  alias Doottodo.Lists
+defmodule DootTodoWeb.Resolvers.Lists do
+  alias DootTodo.Lists
 
   def list_lists(_parent, _args, _resolution) do
     {:ok, Lists.list_lists()}

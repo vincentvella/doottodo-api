@@ -1,6 +1,6 @@
-defmodule Doottodo do
+defmodule DootTodo do
   @moduledoc """
-  Doottodo keeps the contexts that define your domain
+  DootTodo keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

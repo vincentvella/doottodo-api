@@ -1,4 +1,4 @@
-defmodule Doottodo.Repo.Migrations.RemoveCompletedAt do
+defmodule DootTodo.Repo.Migrations.RemoveCompletedAt do
   use Ecto.Migration
 
   def change do

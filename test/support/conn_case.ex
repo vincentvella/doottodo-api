@@ -1,4 +1,4 @@
-defmodule DoottodoWeb.ConnCase do
+defmodule DootTodoWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -11,7 +11,7 @@ defmodule DoottodoWeb.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use DoottodoWeb.ConnCase, async: true`, although
+  by setting `use DootTodoWeb.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -22,17 +22,17 @@ defmodule DoottodoWeb.ConnCase do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      import DoottodoWeb.ConnCase
+      import DootTodoWeb.ConnCase
 
-      alias DoottodoWeb.Router.Helpers, as: Routes
+      alias DootTodoWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint DoottodoWeb.Endpoint
+      @endpoint DootTodoWeb.Endpoint
     end
   end
 
   setup tags do
-    Doottodo.DataCase.setup_sandbox(tags)
+    DootTodo.DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

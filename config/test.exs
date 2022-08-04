@@ -5,7 +5,7 @@ import Config
 # The MIX_TEST_PARTITION environment variable can be used
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
-config :doottodo, Doottodo.Repo,
+config :doottodo, DootTodo.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
@@ -15,13 +15,13 @@ config :doottodo, Doottodo.Repo,
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :doottodo, DoottodoWeb.Endpoint,
+config :doottodo, DootTodoWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
   secret_key_base: "c/ilPiDwXdKa96pWvdC4xhw40Krh+eCXr+VyTvdG1URvw1xiY+zNt7i1L/jXEudU",
   server: false
 
 # In test we don't send emails.
-config :doottodo, Doottodo.Mailer, adapter: Swoosh.Adapters.Test
+config :doottodo, DootTodo.Mailer, adapter: Swoosh.Adapters.Test
 
 # Print only warnings and errors during test
 config :logger, level: :warn

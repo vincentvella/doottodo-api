@@ -1,5 +1,5 @@
-defmodule DoottodoWeb.ErrorView do
-  use DoottodoWeb, :view
+defmodule DootTodoWeb.ErrorView do
+  use DootTodoWeb, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

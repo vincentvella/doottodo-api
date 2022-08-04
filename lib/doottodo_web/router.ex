@@ -1,12 +1,12 @@
-defmodule DoottodoWeb.Router do
-  use DoottodoWeb, :router
+defmodule DootTodoWeb.Router do
+  use DootTodoWeb, :router
 
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, {DoottodoWeb.LayoutView, :root}
+    plug :put_root_layout, {DootTodoWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -20,7 +20,7 @@ defmodule DoottodoWeb.Router do
   # ...
   end
 
-  scope "/", DoottodoWeb do
+  scope "/", DootTodoWeb do
     pipe_through :browser
 
     get "/", PageController, :index
@@ -31,10 +31,10 @@ defmodule DoottodoWeb.Router do
     pipe_through :graphql
 
     get "/", Absinthe.Plug.GraphiQL,
-      schema: DoottodoWeb.Schema, interface: :playground
+      schema: DootTodoWeb.Schema, interface: :playground
 
     forward "/", Absinthe.Plug,
-      schema: DoottodoWeb.Schema
+      schema: DootTodoWeb.Schema
   end
 
   # Enables LiveDashboard only for development
@@ -50,7 +50,7 @@ defmodule DoottodoWeb.Router do
     scope "/" do
       pipe_through :browser
 
-      live_dashboard "/dashboard", metrics: DoottodoWeb.Telemetry
+      live_dashboard "/dashboard", metrics: DootTodoWeb.Telemetry
     end
   end
 

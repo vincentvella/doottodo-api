@@ -1,12 +1,12 @@
-defmodule Doottodo.ListsTest do
-  use Doottodo.DataCase
+defmodule DootTodo.ListsTest do
+  use DootTodo.DataCase
 
-  alias Doottodo.Lists
+  alias DootTodo.Lists
 
   describe "lists" do
-    alias Doottodo.Lists.List
+    alias DootTodo.Lists.List
 
-    import Doottodo.ListsFixtures
+    import DootTodo.ListsFixtures
 
     @invalid_attrs %{id: nil, title: nil}
 

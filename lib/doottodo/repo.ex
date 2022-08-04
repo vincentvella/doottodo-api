@@ -1,4 +1,4 @@
-defmodule Doottodo.Repo do
+defmodule DootTodo.Repo do
   use Ecto.Repo,
     otp_app: :doottodo,
     adapter: Ecto.Adapters.Postgres

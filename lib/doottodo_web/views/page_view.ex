@@ -1,3 +1,3 @@
-defmodule DoottodoWeb.PageView do
-  use DoottodoWeb, :view
+defmodule DootTodoWeb.PageView do
+  use DootTodoWeb, :view
 end

@@ -8,13 +8,13 @@
 import Config
 
 config :doottodo,
-  ecto_repos: [Doottodo.Repo]
+  ecto_repos: [DootTodo.Repo]
 
 # Configures the endpoint
-config :doottodo, DoottodoWeb.Endpoint,
+config :doottodo, DootTodoWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: DoottodoWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: Doottodo.PubSub,
+  render_errors: [view: DootTodoWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: DootTodo.PubSub,
   live_view: [signing_salt: "oRsZaYp/"]
 
 # Configures the mailer
@@ -24,7 +24,7 @@ config :doottodo, DoottodoWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :doottodo, Doottodo.Mailer, adapter: Swoosh.Adapters.Local
+config :doottodo, DootTodo.Mailer, adapter: Swoosh.Adapters.Local
 
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
@@ -47,7 +47,7 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-config :doottodo, Doottodo.Repo, migration_timestamps: [type: :utc_datetime]
+config :doottodo, DootTodo.Repo, migration_timestamps: [type: :utc_datetime]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

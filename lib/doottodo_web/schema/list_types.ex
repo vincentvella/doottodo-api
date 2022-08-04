@@ -1,4 +1,4 @@
-defmodule DoottodoWeb.Schema.ListTypes do
+defmodule DootTodoWeb.Schema.ListTypes do
   use Absinthe.Schema.Notation
 
   import_types(Absinthe.Type.Custom)

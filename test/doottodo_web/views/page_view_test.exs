@@ -1,3 +1,3 @@
-defmodule DoottodoWeb.PageViewTest do
-  use DoottodoWeb.ConnCase, async: true
+defmodule DootTodoWeb.PageViewTest do
+  use DootTodoWeb.ConnCase, async: true
 end

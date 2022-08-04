@@ -1,4 +1,4 @@
-defmodule Doottodo.Repo.Migrations.CreateLists do
+defmodule DootTodo.Repo.Migrations.CreateLists do
   use Ecto.Migration
 
   def change do

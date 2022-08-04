@@ -1,5 +1,5 @@
-defmodule Doottodo.Lists.List do
-  use Doottodo.Schema
+defmodule DootTodo.Lists.List do
+  use DootTodo.Schema
   import Ecto.Changeset
 
   @primary_key {:id, Ecto.UUID, autogenerate: true}

@@ -1,4 +1,4 @@
-defmodule Doottodo.Application do
+defmodule DootTodo.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
@@ -9,20 +9,20 @@ defmodule Doottodo.Application do
   def start(_type, _args) do
     children = [
       # Start the Ecto repository
-      Doottodo.Repo,
+      DootTodo.Repo,
       # Start the Telemetry supervisor
-      DoottodoWeb.Telemetry,
+      DootTodoWeb.Telemetry,
       # Start the PubSub system
-      {Phoenix.PubSub, name: Doottodo.PubSub},
+      {Phoenix.PubSub, name: DootTodo.PubSub},
       # Start the Endpoint (http/https)
-      DoottodoWeb.Endpoint
-      # Start a worker by calling: Doottodo.Worker.start_link(arg)
-      # {Doottodo.Worker, arg}
+      DootTodoWeb.Endpoint
+      # Start a worker by calling: DootTodo.Worker.start_link(arg)
+      # {DootTodo.Worker, arg}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: Doottodo.Supervisor]
+    opts = [strategy: :one_for_one, name: DootTodo.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
@@ -30,7 +30,7 @@ defmodule Doottodo.Application do
   # whenever the application is updated.
   @impl true
   def config_change(changed, _new, removed) do
-    DoottodoWeb.Endpoint.config_change(changed, removed)
+    DootTodoWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

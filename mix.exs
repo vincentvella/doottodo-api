@@ -1,4 +1,4 @@
-defmodule Doottodo.MixProject do
+defmodule DootTodo.MixProject do
   use Mix.Project
 
   def project do
@@ -18,7 +18,7 @@ defmodule Doottodo.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Doottodo.Application, []},
+      mod: {DootTodo.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
