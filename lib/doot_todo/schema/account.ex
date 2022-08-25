@@ -3,29 +3,29 @@ defmodule DootTodo.Schema.Account do
     quote do
       object :account do
         field :id, non_null(:id)
-        field :user_id, :string
-        field :invited_at, :datetime
+        field :user_id, non_null(:id)
+        field :invited_at, :utc_datetime_usec
         field :confirmation_token, :string
-        field :confirmation_sent_at, :string
-        field :confirmed_at, :datetime
+        field :confirmation_sent_at, :utc_datetime_usec
+        field :confirmed_at, :utc_datetime_usec
         field :recovery_token, :string
-        field :recovery_sent_at, :datetime
-        field :recovery_confirmed_at, :datetime
-        field :email_confirmed_at, :datetime
+        field :recovery_sent_at, :utc_datetime_usec
+        field :recovery_confirmed_at, :utc_datetime_usec
+        field :email_confirmed_at, :utc_datetime_usec
         field :email_change_token_new, :string
         field :email_change, :string
-        field :email_change_sent_at, :datetime
-        field :last_sign_in_at, :datetime
+        field :email_change_sent_at, :utc_datetime_usec
+        field :last_sign_in_at, :utc_datetime_usec
         field :phone, :string
-        field :phone_confirmed_at, :datetime
+        field :phone_confirmed_at, :utc_datetime_usec
         field :phone_change, :string
         field :phone_change_token, :string
-        field :phone_change_sent_at, :string
+        field :phone_change_sent_at, :utc_datetime_usec
         field :phone_change_token_current, :string
         field :phone_change_confirm_status, :integer
-        field :banned_until, :datetime
+        field :banned_until, :utc_datetime_usec
         field :reauthentication_token, :string
-        field :reauthentication_sent_at, :datetime
+        field :reauthentication_sent_at, :utc_datetime_usec
       end
     end
   end

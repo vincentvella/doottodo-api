@@ -43,7 +43,7 @@ defmodule DootTodo.Repo.Migrations.CreateUsers do
     create(index(:users_tokens, [:user_id]))
     create(unique_index(:users_tokens, [:context, :token]))
 
-    create table(:account, primary_key: false) do
+    create table(:accounts, primary_key: false) do
       add(:id, :uuid, primary_key: true, null: false)
       add(:user_id, references(:users, type: :uuid, on_delete: :delete_all), null: false)
       add(:invited_at, :utc_datetime_usec)

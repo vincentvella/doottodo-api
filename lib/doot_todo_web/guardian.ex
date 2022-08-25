@@ -11,7 +11,7 @@ defmodule DootTodo.Guardian do
   end
 
   def resource_from_claims(%{"sub" => id}) do
-    case Users.User.!(id) do
+    case Users.UsersController.get_user!(id) do
       nil -> {:error, "User not found"}
       user -> {:ok, user}
     end

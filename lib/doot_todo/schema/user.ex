@@ -21,7 +21,7 @@ defmodule DootTodo.Schema.User do
           arg(:email, non_null(:string))
           arg(:password, non_null(:string))
 
-          resolve(&Resolvers.Accounts.create_user/3)
+          resolve(&Resolvers.Users.create_user/3)
         end
       end
 
@@ -33,7 +33,7 @@ defmodule DootTodo.Schema.User do
         field :create_session, :session do
           arg(:email, non_null(:string))
           arg(:password, non_null(:string))
-          resolve(&Resolvers.Accounts.login/2)
+          resolve(&Resolvers.Users.login/2)
         end
       end
 
