@@ -18,18 +18,21 @@ defmodule DootTodo.Repo.Migrations.CreateUsers do
     create table(:identities, primary_key: false) do
       # Table id
       add(:id, :uuid, null: false)
-      # Id from identity proider
-      add(:uid, :string, null: false)
+      # Id from identity provider
+      add(:user_id, references(:users, type: :uuid, on_delete: :delete_all),
+        primary_key: true,
+        null: false
+      )
+
       # Provider
-      add(:provider, :string, null: false)
-      add(:user_id, references(:users, type: :uuid, on_delete: :nothing), null: false)
+      add(:provider, :string, primary_key: true, null: false)
       add(:identity_data, :map, null: false)
       add(:last_sign_in_at, :utc_datetime_usec)
 
       timestamps()
     end
 
-    create unique_index(:identities, [:uid, :provider])
+    create unique_index(:identities, [:user_id, :provider])
 
     create table(:users_tokens) do
       add(:user_id, references(:users, type: :uuid, on_delete: :delete_all), null: false)

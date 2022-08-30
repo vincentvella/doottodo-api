@@ -13,9 +13,9 @@ defmodule DootTodo.Accounts.AccountsController do
   alias DootTodo.UsersTokens.UserToken
   alias DootTodo.Accounts.AccountNotifier
 
-  def account_changeset(account, changeset) do
+  def account_changeset(account, userId) do
     account
-    |> change(user_id: Ecto.UUID.cast!(changeset.id))
+    |> change(user_id: Ecto.UUID.cast!(userId))
     |> cast_assoc(:user)
     |> validate_required([:user_id])
     |> unique_constraint(:user_id)

@@ -2,6 +2,7 @@ defmodule DootTodo.Users.UsersController do
   import Ecto.Changeset
   alias DootTodo.Repo
   alias DootTodo.Users.User
+  alias DootTodo.Accounts.Account
 
   @doc """
   A user changeset for registration.
@@ -25,6 +26,26 @@ defmodule DootTodo.Users.UsersController do
     |> cast(attrs, [:email, :password])
     |> validate_email()
     |> validate_password(opts)
+  end
+
+  ## User registration
+
+  @doc """
+  Registers a user.
+
+  ## Examples
+
+      iex> register_user(%{field: value})
+      {:ok, %User{}}
+
+      iex> register_user(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def register_user(attrs) do
+    %User{}
+    |> registration_changeset(attrs)
+    |> Repo.insert()
   end
 
   defp validate_email(changeset) do
@@ -143,26 +164,6 @@ defmodule DootTodo.Users.UsersController do
 
   """
   def get_user!(id), do: Repo.get!(User, id)
-
-  ## User registration
-
-  @doc """
-  Registers a user.
-
-  ## Examples
-
-      iex> register_user(%{field: value})
-      {:ok, %User{}}
-
-      iex> register_user(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def register_user(attrs) do
-    %User{}
-    |> registration_changeset(attrs)
-    |> Repo.insert()
-  end
 
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking user changes.

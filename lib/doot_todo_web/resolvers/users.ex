@@ -1,27 +1,60 @@
 defmodule DootTodoWeb.Resolvers.Users do
+  alias DootTodo.Repo
   use Absinthe.Schema.Notation
   use DootTodo.Schema.User
   alias DootTodo.Users.User
+  alias DootTodo.Accounts.Account
+  alias DootTodo.Identities.Identity
   alias DootTodo.Users.UsersController
   alias DootTodo.Accounts.AccountsController
+  alias DootTodo.Identities.IdentitiesController
 
   def create_user(_parent, args, _context) do
-    UsersController.register_user(args)
+    user_changeset =
+      UsersController.registration_changeset(%User{:id => Ecto.UUID.generate()}, args)
+
+    account_changeset = AccountsController.account_changeset(%Account{}, user_changeset.data.id)
+
+    identity_id = Ecto.UUID.generate()
+
+    identity_changeset =
+      IdentitiesController.identity_changeset(%Identity{:id => identity_id}, %{
+        user_id: user_changeset.data.id,
+        identity_data: %{sub: identity_id},
+        provider: "email"
+      })
+
+    # list_changeset = ListsController.list_changeset(%List{}, user_changeset.data.id)
+
+    Ecto.Multi.new()
+    |> Ecto.Multi.insert(:user, user_changeset)
+    |> Ecto.Multi.insert(:account, account_changeset)
+    |> Ecto.Multi.insert(:identity, identity_changeset)
+    # |> Ecto.Multi.insert(:lists, lists_changeset)
+    |> Repo.transaction()
     |> case do
-      {:ok, user} ->
-        AccountsController.create_account(user)
-        |> case do
-          {:ok, _account} ->
-            {:ok, user}
+      {:ok, %{user: user, account: _account}} ->
+        # We only return the user here, frontend doesn't need any acct info
+        {:ok, user}
 
-          {:error, changeset} ->
-            {:error, changeset}
-        end
+      {:error, :user, value, _} ->
+        IO.puts("User registration failed")
+        IO.inspect(value)
 
-      {:error, changeset} ->
-        {:error, changeset}
+      {:error, op, value, _} ->
+        IO.puts("Unknown Error in user registration")
+        IO.inspect(op)
+        IO.inspect(value)
     end
   end
+
+  #       {:error, changeset} ->
+  #         {:error, changeset}
+  #     end
+
+  #   {:error, changeset} ->
+  #     {:error, changeset}
+  # end
 
   @spec login(%{:email => any, :password => any, optional(any) => any}, any) ::
           {:error, <<_::216>>} | {:ok, %{token: binary}}
