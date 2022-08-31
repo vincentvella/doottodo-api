@@ -3,9 +3,11 @@ defmodule DootTodoWeb.Resolvers.Users do
   use Absinthe.Schema.Notation
   use DootTodo.Schema.User
   alias DootTodo.Users.User
+  alias DootTodo.Lists.List
   alias DootTodo.Accounts.Account
   alias DootTodo.Identities.Identity
   alias DootTodo.Users.UsersController
+  alias DootTodo.Lists.ListOnUser
   alias DootTodo.Accounts.AccountsController
   alias DootTodo.Identities.IdentitiesController
 
@@ -24,13 +26,18 @@ defmodule DootTodoWeb.Resolvers.Users do
         provider: "email"
       })
 
-    # list_changeset = ListsController.list_changeset(%List{}, user_changeset.data.id)
+    list_id = Ecto.UUID.generate()
+    list_changeset = List.changeset(%List{id: list_id, title: "My List"})
 
     Ecto.Multi.new()
     |> Ecto.Multi.insert(:user, user_changeset)
     |> Ecto.Multi.insert(:account, account_changeset)
     |> Ecto.Multi.insert(:identity, identity_changeset)
-    # |> Ecto.Multi.insert(:lists, lists_changeset)
+    |> Ecto.Multi.insert(:list, list_changeset)
+    |> Ecto.Multi.insert(:list_on_user, %ListOnUser{
+      :list_id => Ecto.UUID.cast!(list_changeset.data.id),
+      :user_id => Ecto.UUID.cast!(user_changeset.data.id)
+    })
     |> Repo.transaction()
     |> case do
       {:ok, %{user: user, account: _account}} ->

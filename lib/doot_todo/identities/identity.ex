@@ -1,10 +1,12 @@
 defmodule DootTodo.Identities.Identity do
-  use DootTodo.Schema
+  use Ecto.Schema
   alias DootTodo.Users.User
 
   @primary_key {:user_id, Ecto.UUID, autogenerate: true}
   @primary_key {:provider, :string, autogenerate: false}
-  @foreign_key_type Ecto.UUID
+  @foreign_key_type :binary_id
+  @derive {Phoenix.Param, key: :user_id}
+  @timestamps_opts [type: :utc_datetime_usec]
 
   schema "identities" do
     field :id, Ecto.UUID, autogenerate: true

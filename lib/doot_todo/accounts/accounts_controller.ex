@@ -5,8 +5,8 @@ defmodule DootTodo.Accounts.AccountsController do
 
   import Ecto.Query, warn: false
   import Ecto.Changeset
-  alias DootTodo.Repo
 
+  alias DootTodo.Repo
   alias DootTodo.Users.User
   alias DootTodo.Accounts.Account
   alias DootTodo.Users.UsersController

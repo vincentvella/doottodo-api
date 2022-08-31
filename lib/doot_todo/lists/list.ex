@@ -1,19 +1,16 @@
 defmodule DootTodo.Lists.List do
-  use DootTodo.Schema
   import Ecto.Changeset
-
-  @primary_key {:id, Ecto.UUID, autogenerate: true}
+  use DootTodo.Schema
 
   schema "lists" do
     field(:title, :string)
-    many_to_many :users, DootTodo.Users.User, join_through: DootTodo.ListsOnUsers.ListOnUser
+    has_many(:users, DootTodo.Lists.ListOnUser)
     timestamps()
   end
 
-  @doc false
-  def changeset(list, attrs) do
-    list
-    |> cast(attrs, [:id, :title, :inserted_at, :updated_at])
+  def changeset(struct, params \\ %{}) do
+    struct
+    |> cast(params, [:id, :title])
     |> validate_required([:title])
   end
 end

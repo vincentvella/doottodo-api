@@ -2,9 +2,6 @@ defmodule DootTodo.Accounts.Account do
   use DootTodo.Schema
   alias DootTodo.Users.User
 
-  @primary_key {:id, Ecto.UUID, autogenerate: true}
-  @foreign_key_type Ecto.UUID
-
   schema "accounts" do
     field :invited_at, :utc_datetime_usec
     field :confirmation_token, :string
