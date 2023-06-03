@@ -28,16 +28,13 @@ defmodule DootTodo.DataCase do
   end
 
   setup tags do
-    DootTodo.DataCase.setup_sandbox(tags)
-    :ok
-  end
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(DootTodo.Repo)
 
-  @doc """
-  Sets up the sandbox based on the test tags.
-  """
-  def setup_sandbox(tags) do
-    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(DootTodo.Repo, shared: not tags[:async])
-    on_exit(fn -> Ecto.Adapters.SQL.Sandbox.stop_owner(pid) end)
+    unless tags[:async] do
+      Ecto.Adapters.SQL.Sandbox.mode(DootTodo.Repo, {:shared, self()})
+    end
+
+    :ok
   end
 
   @doc """
