@@ -1,8 +1,5 @@
 import Config
 
-# Only in tests, remove the complexity from the password hashing algorithm
-config :bcrypt_elixir, :log_rounds, 1
-
 # Configure your database
 #
 # The MIX_TEST_PARTITION environment variable can be used
@@ -11,8 +8,8 @@ config :bcrypt_elixir, :log_rounds, 1
 config :doot_todo, DootTodo.Repo,
   username: "postgres",
   password: "postgres",
-  database: "doot_todo_test#{System.get_env("MIX_TEST_PARTITION")}",
   hostname: "localhost",
+  database: "doot_todo_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
@@ -20,7 +17,7 @@ config :doot_todo, DootTodo.Repo,
 # you can enable the server option below.
 config :doot_todo, DootTodoWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: System.get_env("SECRET_KEY"),
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
   server: false
 
 # In test we don't send emails.
@@ -31,8 +28,6 @@ config :logger, level: :warn
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
-
-config :doot_todo, DootTodo.Mailer, adapter: Bamboo.TestAdapter
 
 # Dont run oban in tests
 config :doot_todo, Oban, queues: false, plugins: false

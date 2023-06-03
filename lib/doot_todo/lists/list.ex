@@ -6,7 +6,7 @@ defmodule DootTodo.Lists.List do
 
   schema "lists" do
     field(:title, :string)
-    many_to_many :users, DootTodo.Accounts.User, join_through: DootTodo.ListsOnUsers.ListOnUser
+    many_to_many :users, DootTodo.Users.User, join_through: DootTodo.ListsOnUsers.ListOnUser
     timestamps()
   end
 

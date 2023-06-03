@@ -7,6 +7,7 @@ defmodule DootTodo.MixProject do
       version: "0.1.0",
       elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
+      compilers: Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
@@ -32,52 +33,30 @@ defmodule DootTodo.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      # Kaffy administration
-      {:kaffy, github: "arturictus/kaffy", branch: "update_phx"},
-      {:guardian, "~> 2.0"},
-      {:phoenix, "~> 1.6.7"},
+      {:phoenix, "~> 1.6.11"},
       {:phoenix_ecto, "~> 4.4"},
-      {:ecto_sql, "~> 3.7"},
+      {:ecto_sql, "~> 3.6"},
       {:postgrex, ">= 0.0.0"},
-      {:phoenix_html, "~> 3.1"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view, "~> 0.17"},
-      {:floki, ">= 0.30.0"},
       {:phoenix_live_dashboard, "~> 0.6"},
-      {:esbuild, "~> 0.2", runtime: Mix.env() == :dev},
-      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
-      {:swoosh, "~> 1.3"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
-      {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-
-      # Additional packages
-
+      # Authentication
+      {:argon2_elixir, "~> 3.0"},
+      {:guardian, "~> 2.0"},
+      {:ueberauth, "~> 0.10.2"},
       # Oban for background jobs
       {:oban, "~> 2.9.2"},
       # Absinthe for GraphQL
       {:absinthe, "~> 1.6.5"},
       {:absinthe_plug, "~> 1.5.8"},
-
       # Bamboo for Emailing
-      {:bamboo, "~> 1.5"},
+      {:swoosh, "~> 1.3"},
       {:premailex, "~> 0.3.0"},
-
-      # Waffle for file upload
-      {:waffle, "~> 1.1.1"},
-      {:waffle_ecto, "~> 0.0.9"},
-      # If using Waffle with S3:
-      {:ex_aws, "~> 2.1.2"},
-      {:ex_aws_s3, "~> 2.0"},
-      {:hackney, "~> 1.9"},
-      {:sweet_xml, "~> 0.6"},
-      {:bcrypt_elixir, "~> 2.0"},
-      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
-      {:sobelow, "~> 0.8", only: :dev},
-      {:live_ui_kit, "~> 0.1.7"},
-      {:ecto_psql_extras, "~> 0.7"}
+      # SSL validation
+      {:certifi, "~> 2.4"},
+      {:ssl_verify_fun, "~> 1.1"}
     ]
   end
 
@@ -92,8 +71,7 @@ defmodule DootTodo.MixProject do
       setup: ["deps.get", "ecto.setup"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"]
+      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
     ]
   end
 end

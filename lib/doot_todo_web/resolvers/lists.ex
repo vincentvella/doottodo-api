@@ -1,7 +1,7 @@
 defmodule DootTodoWeb.Resolvers.Lists do
   use Absinthe.Schema.Notation
   import_types(Absinthe.Type.Custom)
-  use DootTodo.Schema.ListTypes
+  use DootTodo.Schema.List
 
   alias DootTodo.Lists
 

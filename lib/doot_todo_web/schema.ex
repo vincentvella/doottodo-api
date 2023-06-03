@@ -4,7 +4,7 @@ defmodule DootTodoWeb.Schema do
 
   # Add import type here
   import_types(Resolvers.Lists)
-  import_types(Resolvers.Accounts)
+  import_types(Resolvers.Users)
 
   query do
     # Add queries here
@@ -12,11 +12,8 @@ defmodule DootTodoWeb.Schema do
   end
 
   mutation do
-    import_fields(:accounts_mutations)
+    import_fields(:users_mutations)
     # Add mutations here. Example
     # import_fields(:create_product)
-    # THESE CAN BE UNCOMMENTED WHEN THERE IS A QUERY
-    # import_fields(:login_mutation)
-    # import_fields(:create_user_mutation)
   end
 end

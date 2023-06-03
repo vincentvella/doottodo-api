@@ -6,7 +6,8 @@ config :doot_todo, DootTodo.Repo,
   password: "postgrespw",
   hostname: "localhost",
   database: "doottodo_dev",
-  port: "55003",
+  port: "55000",
+  stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
@@ -23,12 +24,8 @@ config :doot_todo, DootTodoWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: System.get_env("SECRET_KEY"),
-  watchers: [
-    # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
-  ]
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
+  watchers: []
 
 # ## SSL Support
 #
@@ -54,17 +51,6 @@ config :doot_todo, DootTodoWeb.Endpoint,
 # configured to run both http and https servers on
 # different ports.
 
-# Watch static and templates for browser reloading.
-config :doot_todo, DootTodoWeb.Endpoint,
-  live_reload: [
-    patterns: [
-      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"priv/gettext/.*(po)$",
-      ~r"lib/doot_todo_web/(live|views)/.*(ex)$",
-      ~r"lib/doot_todo_web/templates/.*(eex)$"
-    ]
-  ]
-
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
 
@@ -74,5 +60,3 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
-
-config :doot_todo, DootTodo.Mailer, adapter: Bamboo.LocalAdapter
